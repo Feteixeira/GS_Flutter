@@ -59,15 +59,27 @@ flowchart TD
 
 ## Prints das telas
 
-> Substituir pelas capturas reais, salvas na pasta `docs/prints/`.
+Capturas feitas no emulador Android (Pixel 7).
 
-| Splash | Introdução | Cidades | Detalhe |
+### Splash e introdução
+| Splash | Introdução 1 | Introdução 2 | Introdução 3 |
 |---|---|---|---|
-| ![](docs/prints/01-splash.png) | ![](docs/prints/02-introducao.png) | ![](docs/prints/03-cidades.png) | ![](docs/prints/04-detalhe.png) |
+| ![](docs/prints/01-splash.png) | ![](docs/prints/02-introducao-1.png) | ![](docs/prints/02-introducao-2.png) | ![](docs/prints/02-introducao-3.png) |
 
-| Erro com nova tentativa | Favoritas | Guia | Orientação |
+### Cidades e detalhe
+| Lista com favoritas | Busca | Detalhe (topo) | Detalhe (previsão) |
 |---|---|---|---|
-| ![](docs/prints/05-erro.png) | ![](docs/prints/06-favoritas.png) | ![](docs/prints/07-guia.png) | ![](docs/prints/08-orientacao.png) |
+| ![](docs/prints/03-cidades-1.png) | ![](docs/prints/03-cidades-2.png) | ![](docs/prints/04-detalhe-1.png) | ![](docs/prints/04-detalhe-2.png) |
+
+### Orientação, erro e favoritas
+| Como se proteger | Erro com nova tentativa | Favoritas |
+|---|---|---|
+| ![](docs/prints/05-orientacao.png) | ![](docs/prints/06-erro.png) | ![](docs/prints/07-favoritas.png) |
+
+### Guia e sobre
+| Guia (emergência) | Guia (orientações) | Sobre (propósito) | Sobre (equipe) |
+|---|---|---|---|
+| ![](docs/prints/08-guia-1.png) | ![](docs/prints/08-guia-2.png) | ![](docs/prints/09-sobre-1.png) | ![](docs/prints/09-sobre-2.png) |
 
 ## API utilizada
 
@@ -127,18 +139,35 @@ lib/
 6. Toque no telefone de emergência copia o número.
 7. Seções expansíveis de antes, durante e depois.
 
+## Vídeo pitch
+
+**Link (YouTube, público):** COLE_AQUI_O_LINK_DO_VIDEO
+
+Vídeo de até 5 minutos, gravado e narrado pela equipe, com pelo menos metade do tempo mostrando o aplicativo funcionando.
+
 ## Como executar
 
-Pré-requisitos: Flutter 3.22 ou superior e um emulador Android ou celular conectado.
+Pré-requisitos: Flutter 3.22 ou superior, Android Studio e um emulador Android (ou celular com depuração USB).
 
 ```bash
 # dentro da pasta do projeto
-flutter create . --project-name alerta_cidadao --org br.com.fiap
 flutter pub get
 flutter run
 ```
 
-O comando `flutter create .` gera as pastas de plataforma (android, ios, web...) sem sobrescrever o código que já está no projeto.
+Antes do `flutter run`, deixe o emulador aberto e selecione o dispositivo Android (no Android Studio, no menu ao lado do botão de play). Se aparecer "Windows (desktop)" ou "Chrome (web)", troque para o emulador.
+
+Se a pasta `android/` não existir (por exemplo, ao usar uma cópia só com o código), gere as pastas de plataforma antes, sem sobrescrever nada do projeto:
+
+```bash
+flutter create . --project-name alerta_cidadao --org br.com.fiap
+```
+
+**Windows com o projeto fora do disco C:** se o build falhar com a mensagem `this and base files have different roots`, adicione a linha abaixo no final de `android/gradle.properties` e rode `flutter clean` e `flutter pub get` antes de executar de novo. Ela só desliga o cache incremental do Kotlin e não muda nada no app.
+
+```
+kotlin.incremental=false
+```
 
 Para rodar os testes de unidade (conversão do JSON e regras de alerta):
 
